@@ -9,9 +9,9 @@ import java.util.function.Function;
 @AllArgsConstructor
 public enum InputType {
 
-    C(TreasureMap::new),
-    M(Mountain::new),
-    T(Treasure::new);
+    C(TreasureMap::parse),
+    M(Mountain::parse),
+    T(Treasure::parse);
 
-    private final Function<Coordinate, MapObject> function;
+    private final Function<String[], MapObject> function;
 }

@@ -25,4 +25,20 @@ class InputReaderTest {
         assertThat(map.getCoordinate()).isEqualTo(new Coordinate(3, 4));
     }
 
+    @Test
+    void should_create_a_mountain_from_input() {
+        MapObject mountain = inputReader.read("M - 1 - 1");
+
+        assertThat(mountain.getInputType()).isEqualTo(InputType.M);
+        assertThat(mountain.getCoordinate()).isEqualTo(new Coordinate(1, 1));
+    }
+
+    @Test
+    void should_create_a_treasure_from_input() {
+        MapObject treasure = inputReader.read("T - 0 - 3 - 2");
+
+        assertThat(treasure.getInputType()).isEqualTo(InputType.T);
+        assertThat(treasure.getCoordinate()).isEqualTo(new Coordinate(0, 3));
+        assertThat(treasure.getNumber()).isEqualTo(2);
+    }
 }
