@@ -9,8 +9,12 @@ public class Mountain implements MapObject {
 
     private Coordinate coordinate;
 
+    public Mountain(String x, String y) {
+        coordinate = Coordinate.parse(x, y);
+    }
+
     public static Mountain parse(String[] inputs) {
-        return new Mountain(Coordinate.parse(inputs[1], inputs[2]));
+        return new Mountain(inputs[1], inputs[2]);
     }
 
     @Override
