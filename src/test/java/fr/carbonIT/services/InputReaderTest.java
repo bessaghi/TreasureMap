@@ -1,8 +1,6 @@
 package fr.carbonIT.services;
 
-import fr.carbonIT.domain.Coordinate;
-import fr.carbonIT.domain.InputType;
-import fr.carbonIT.domain.MapObject;
+import fr.carbonIT.domain.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -35,10 +33,22 @@ class InputReaderTest {
 
     @Test
     void should_create_a_treasure_from_input() {
-        MapObject treasure = inputReader.read("T - 0 - 3 - 2");
+        Treasure treasure = (Treasure)  inputReader.read("T - 0 - 3 - 2");
 
         assertThat(treasure.getInputType()).isEqualTo(InputType.T);
         assertThat(treasure.getCoordinate()).isEqualTo(new Coordinate(0, 3));
         assertThat(treasure.getNumber()).isEqualTo(2);
+    }
+
+    @Test
+    void should_create_an_adventurer_from_input() {
+        Adventurer adventurer = (Adventurer) inputReader.read("A - Indiana - 1 - 1 - S - AADADA");
+
+        assertThat(adventurer.getInputType()).isEqualTo(InputType.A);
+        assertThat(adventurer.getCoordinate()).isEqualTo(new Coordinate(1, 1));
+        assertThat(adventurer.getName()).isEqualTo("Indiana");
+        assertThat(adventurer.getOrientation()).isEqualTo(Orientation.S);
+        assertThat(adventurer.getMovements()).containsExactly('A', 'A', 'D', 'A', 'D', 'A');
+
     }
 }
