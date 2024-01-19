@@ -1,12 +1,18 @@
 package fr.carbonIT.services;
 
 import fr.carbonIT.domain.Coordinate;
-import fr.carbonIT.domain.TreasureMap;
+import fr.carbonIT.domain.InputType;
+import fr.carbonIT.domain.MapObject;
 
 public class InputReader {
-    public TreasureMap read(String input) {
-        String[] split = input.split(" - ");
 
-        return new TreasureMap(Coordinate.parse(split[1], split[2]));
+    public static final String SEPARATOR = " - ";
+
+    public MapObject read(String input) {
+        String[] split = input.split(SEPARATOR);
+
+        InputType inputType = InputType.valueOf(split[0]);
+
+        return inputType.getFunction().apply(Coordinate.parse(split[1], split[2]));
     }
 }

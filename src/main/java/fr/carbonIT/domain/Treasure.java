@@ -5,12 +5,12 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class TreasureMap implements MapObject {
+public class Treasure implements MapObject {
 
     private Coordinate coordinate;
 
     @Override
     public InputType getInputType() {
-        return InputType.C;
+        return InputType.T;
     }
 }
