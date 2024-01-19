@@ -31,6 +31,7 @@ public class FileReader {
                 .map(inputStream -> new InputStreamReader(inputStream, StandardCharsets.UTF_8))
                 .map(BufferedReader::new)
                 .map(BufferedReader::lines)
+                .map(s -> s.filter(it -> !it.startsWith("#")))
                 .map(Stream::toList)
                 .orElseThrow(UnreadableFileException::new);
     }

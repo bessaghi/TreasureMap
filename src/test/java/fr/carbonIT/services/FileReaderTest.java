@@ -35,4 +35,14 @@ class FileReaderTest {
                         .build()
         );
     }
+
+    @Test
+    void should_ignore_comment_lines() {
+        List<MapObject> actual = fileReader.read("/treasure-map-with-comments.txt");
+
+        assertThat(actual).containsExactly(
+                new TreasureMap("3", "4"),
+                new Mountain("1", "0")
+        );
+    }
 }
