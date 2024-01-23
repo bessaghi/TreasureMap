@@ -15,9 +15,7 @@ public class FileWriter {
 
         try {
             Files.write(path, results, StandardOpenOption.CREATE, StandardOpenOption.WRITE);
-            System.out.println("Data written to file successfully.");
         } catch (IOException e) {
-            System.err.println("An error occurred while writing to the file.");
             throw new FileCreationFailedException();
         }
     }

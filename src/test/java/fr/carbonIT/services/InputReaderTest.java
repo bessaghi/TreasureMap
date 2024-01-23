@@ -34,7 +34,7 @@ class InputReaderTest {
 
     @Test
     void should_create_a_treasure_from_input() {
-        Treasure treasure = (Treasure)  inputReader.read("T - 0 - 3 - 2");
+        Treasure treasure = (Treasure) inputReader.read("T - 0 - 3 - 2");
 
         assertThat(treasure.getInputType()).isEqualTo(InputType.T);
         assertThat(treasure.getCoordinate()).isEqualTo(new Coordinate(0, 3));

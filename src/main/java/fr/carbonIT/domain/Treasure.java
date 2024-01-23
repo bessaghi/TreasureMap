@@ -1,17 +1,17 @@
 package fr.carbonIT.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
+import static fr.carbonIT.utils.GlobalConstants.LINE_BREAK;
+import static fr.carbonIT.utils.GlobalConstants.TREASURE_HEADER;
 import static java.lang.Integer.parseInt;
 
 @Getter
 @EqualsAndHashCode
-@AllArgsConstructor
 public class Treasure implements MapObject {
 
-    private Coordinate coordinate;
+    private final Coordinate coordinate;
     private int number;
 
     public Treasure(String x, String y, String number) {
@@ -25,7 +25,8 @@ public class Treasure implements MapObject {
 
     @Override
     public String toString() {
-        return "# {T comme Trésor} - {Axe horizontal} - {Axe vertical} - {Nb. de trésors restants}\n" +
+        return TREASURE_HEADER +
+                LINE_BREAK +
                 "T - %d - %d - %d".formatted(coordinate.getX(), coordinate.getY(), number);
     }
 

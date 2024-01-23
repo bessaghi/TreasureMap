@@ -3,9 +3,9 @@ package fr.carbonIT.services;
 import fr.carbonIT.domain.InputType;
 import fr.carbonIT.domain.MapObject;
 
-public class InputReader {
+import static fr.carbonIT.utils.GlobalConstants.SEPARATOR;
 
-    private static final String SEPARATOR = " - ";
+public class InputReader {
 
     public MapObject read(String input) {
         String[] split = input.split(SEPARATOR);

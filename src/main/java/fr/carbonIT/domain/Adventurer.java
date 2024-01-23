@@ -6,6 +6,9 @@ import lombok.Data;
 
 import java.util.List;
 
+import static fr.carbonIT.utils.GlobalConstants.ADVENTURER_HEADER;
+import static fr.carbonIT.utils.GlobalConstants.LINE_BREAK;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -29,7 +32,7 @@ public class Adventurer implements MapObject {
 
     @Override
     public String toString() {
-        return "# {A comme Aventurier} - {Nom de l’aventurier} - {Axe horizontal} - {Axe vertical} - {Orientation} - {Nb. trésors ramassés}\n" +
+        return ADVENTURER_HEADER + LINE_BREAK +
                 "A - %s - %d - %d - %s - %d".formatted(name, coordinate.getX(), coordinate.getY(), orientation, treasures);
     }
 
@@ -52,14 +55,19 @@ public class Adventurer implements MapObject {
 
     public void goStraight(TreasureMapJourney mapJourney) {
         Coordinate destination = orientation.getMove().apply(coordinate.getX(), coordinate.getY());
-        if (destination.getX() < 0 && destination.getY() < 0
-                && hasLimit(destination, mapJourney.getMap().getCoordinate())
-                && hasObstacles(destination, mapJourney.getMountains())
-        ) {
+        if (reachedLimits(destination, mapJourney.getMap().getCoordinate())
+                && hasObstacles(destination, mapJourney.getMountains())) {
             return;
         }
         coordinate = destination;
         computeTreasures(mapJourney.getTreasures());
+    }
+
+    private boolean reachedLimits(Coordinate destination, Coordinate mapSize) {
+        return destination.getX() < 0
+                && destination.getY() < 0
+                && destination.getX() > mapSize.getX()
+                && destination.getY() > mapSize.getY();
     }
 
     private void computeTreasures(List<Treasure> treasures) {
@@ -70,14 +78,7 @@ public class Adventurer implements MapObject {
     }
 
     private boolean hasObstacles(Coordinate destination, List<Mountain> mountains) {
-        return !mountains.stream().map(Mountain::getCoordinate)
-                .filter(c -> c.equals(destination))
-                .toList()
-                .isEmpty();
-    }
-
-    private boolean hasLimit(Coordinate destination, Coordinate mapSize) {
-        return destination.getX() > mapSize.getX() && destination.getY() > mapSize.getY();
+        return mountains.stream().anyMatch(it -> it.getCoordinate().equals(destination));
     }
 
     public void turnLeft() {

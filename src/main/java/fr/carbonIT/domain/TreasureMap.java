@@ -1,15 +1,13 @@
 package fr.carbonIT.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 @Getter
 @EqualsAndHashCode
-@AllArgsConstructor
 public class TreasureMap implements MapObject {
 
-    private Coordinate coordinate;
+    private final Coordinate coordinate;
 
     public TreasureMap(String x, String y) {
         coordinate = Coordinate.parse(x, y);
