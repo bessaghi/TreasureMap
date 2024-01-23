@@ -1,11 +1,13 @@
 package fr.carbonIT.domain;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
 import static java.lang.Integer.parseInt;
 
-@Data
+@Getter
+@EqualsAndHashCode
 @AllArgsConstructor
 public class Treasure implements MapObject {
 
@@ -22,7 +24,22 @@ public class Treasure implements MapObject {
     }
 
     @Override
+    public String toString() {
+        return "# {T comme Trésor} - {Axe horizontal} - {Axe vertical} - {Nb. de trésors restants}\n" +
+                "T - %d - %d - %d".formatted(coordinate.getX(), coordinate.getY(), number);
+    }
+
+    @Override
     public InputType getInputType() {
         return InputType.T;
+    }
+
+    @Override
+    public void putIn(TreasureMapJourney mapJourney) {
+        mapJourney.getTreasures().add(this);
+    }
+
+    public void reduceOne() {
+        number--;
     }
 }

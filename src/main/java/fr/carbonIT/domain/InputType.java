@@ -14,5 +14,5 @@ public enum InputType {
     T(Treasure::parse),
     A(Adventurer::parse);
 
-    private final Function<String[], MapObject> function;
+    private final Function<String[], MapObject> parser;
 }

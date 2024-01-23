@@ -12,6 +12,6 @@ public class InputReader {
 
         InputType inputType = InputType.valueOf(split[0]);
 
-        return inputType.getFunction().apply(split);
+        return inputType.getParser().apply(split);
     }
 }

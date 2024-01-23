@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static fr.carbonIT.domain.Direction.*;
+import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class FileReaderTest {
@@ -31,7 +33,7 @@ class FileReaderTest {
                         .name("Lara")
                         .coordinate(new Coordinate(1, 1))
                         .orientation(Orientation.S)
-                        .movements("AADADAGGA".toCharArray())
+                        .movements(asList(A, A, D, A, D, A, G, G, A))
                         .build()
         );
     }

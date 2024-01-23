@@ -1,9 +1,11 @@
 package fr.carbonIT.domain;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
-@Data
+@Getter
+@EqualsAndHashCode
 @AllArgsConstructor
 public class TreasureMap implements MapObject {
 
@@ -18,7 +20,17 @@ public class TreasureMap implements MapObject {
     }
 
     @Override
+    public String toString() {
+        return "C - %d - %d".formatted(coordinate.getX(), coordinate.getY());
+    }
+
+    @Override
     public InputType getInputType() {
         return InputType.C;
+    }
+
+    @Override
+    public void putIn(TreasureMapJourney mapJourney) {
+        mapJourney.setMap(this);
     }
 }

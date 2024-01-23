@@ -18,7 +18,17 @@ public class Mountain implements MapObject {
     }
 
     @Override
+    public String toString() {
+        return "M - %d - %d".formatted(coordinate.getX(), coordinate.getY());
+    }
+
+    @Override
     public InputType getInputType() {
         return InputType.M;
+    }
+
+    @Override
+    public void putIn(TreasureMapJourney mapJourney) {
+        mapJourney.getMountains().add(this);
     }
 }

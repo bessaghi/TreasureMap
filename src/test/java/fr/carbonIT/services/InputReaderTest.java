@@ -4,6 +4,7 @@ import fr.carbonIT.domain.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static fr.carbonIT.domain.Direction.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class InputReaderTest {
@@ -48,7 +49,7 @@ class InputReaderTest {
         assertThat(adventurer.getCoordinate()).isEqualTo(new Coordinate(1, 1));
         assertThat(adventurer.getName()).isEqualTo("Indiana");
         assertThat(adventurer.getOrientation()).isEqualTo(Orientation.S);
-        assertThat(adventurer.getMovements()).containsExactly('A', 'A', 'D', 'A', 'D', 'A');
+        assertThat(adventurer.getMovements()).containsExactly(A, A, D, A, D, A);
 
     }
 }
